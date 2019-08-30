@@ -21,28 +21,31 @@ case1:
 	ldr r1, =opt1
 	ldr r2, =len
 	mov r7, #4
-	b _break
+	swi 0
+	b break
 
 case2: 
 	mov r0, #1
 	ldr r1, =opt2
 	ldr r2, =len
 	mov r7, #4
-	b _break
+	swi 0
+	b break
 
 case3: 
 	mov r0, #1
 	ldr r1, =opt3
 	ldr r2, =len
 	mov r7, #4
-	b _break
+	swi 0
+	b break
 
 default:
-	b _break
+	bal break
 
 
-_break:
-	swi 0
+break:
+
 
 _exit:
 	mov r7, #1
@@ -50,14 +53,15 @@ _exit:
 
 
 .data
-opt1:
-	.asciz "Option 1\n"
 
-opt2:
-	.asciz "Option 2\n"
+	opt1:
+	.ascii "Option 1\n"
 
-opt3: 
-	.asciz "Option 3\n"
+	opt2:
+	.ascii "Option 2\n"
+
+	opt3: 
+	.ascii "Option 3\n"
 
 len = .-opt1
 

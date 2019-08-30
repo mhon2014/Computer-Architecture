@@ -14,14 +14,15 @@ loop:
 	ble done
 
 facto:
-	muls r5, r5, r4		@result *= n
+	mov r5, r6
+	muls r6, r5, r4		@result *= n
 	swi 0
 
 	subs r4, r4, #1 
 	b loop
 
 done: 
-	mov r0, r5
+	mov r0, r6
 
 
 _exit:
