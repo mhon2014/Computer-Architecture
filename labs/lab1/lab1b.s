@@ -21,7 +21,7 @@ case1:
 	ldr r1, =opt1
 	ldr r2, =len
 	mov r7, #4
-	swi 0
+	swi #0
 	b break
 
 case2: 
@@ -29,7 +29,7 @@ case2:
 	ldr r1, =opt2
 	ldr r2, =len
 	mov r7, #4
-	swi 0
+	swi #0
 	b break
 
 case3: 
@@ -37,7 +37,7 @@ case3:
 	ldr r1, =opt3
 	ldr r2, =len
 	mov r7, #4
-	swi 0
+	swi #0
 	b break
 
 default:
@@ -45,6 +45,9 @@ default:
 
 
 break:
+	mov     r0, #0     /* status := 0 */
+    mov     r7, #1     /* exit is syscall #1 */
+    swi     #0          /* invoke syscall */
 
 
 _exit:
