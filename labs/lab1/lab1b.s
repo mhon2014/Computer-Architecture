@@ -22,7 +22,7 @@ case1:
 	ldr r2, =len
 	mov r7, #4
 	swi #0
-	b break
+	bal break
 
 case2: 
 	mov r0, #1
@@ -30,7 +30,7 @@ case2:
 	ldr r2, =len
 	mov r7, #4
 	swi #0
-	b break
+	bal break
 
 case3: 
 	mov r0, #1
@@ -38,7 +38,7 @@ case3:
 	ldr r2, =len
 	mov r7, #4
 	swi #0
-	b break
+	bal break
 
 default:
 	bal break
