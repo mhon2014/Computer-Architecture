@@ -19,7 +19,7 @@ switch:
 case1:
 	mov r0, #1
 	ldr r1, =opt1
-	ldr r2, =len
+	mov r2, #9
 	mov r7, #4
 	swi #0
 	bal break
@@ -27,7 +27,7 @@ case1:
 case2: 
 	mov r0, #1
 	ldr r1, =opt2
-	ldr r2, =len
+	mov r2, #9
 	mov r7, #4
 	swi #0
 	bal break
@@ -35,7 +35,7 @@ case2:
 case3: 
 	mov r0, #1
 	ldr r1, =opt3
-	ldr r2, =len
+	mov r2, #9
 	mov r7, #4
 	swi #0
 	bal break
@@ -45,10 +45,7 @@ default:
 
 
 break:
-	mov     r0, #0     /* status := 0 */
-    mov     r7, #1     /* exit is syscall #1 */
-    swi     #0          /* invoke syscall */
-
+	bal 	_exit
 
 _exit:
 	mov r7, #1
@@ -65,6 +62,3 @@ _exit:
 
 	opt3: 
 	.ascii "Option 3\n"
-
-len = .-opt1
-
