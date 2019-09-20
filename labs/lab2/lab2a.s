@@ -6,7 +6,7 @@
 _start:
 
 	ldr r0, =array
-	mov r1, 6
+	mov r1, #6
 
 	stmfd sp!, {r2-r9, lr}
 
