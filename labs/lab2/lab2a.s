@@ -10,17 +10,17 @@ _start:
 
 	stmfd sp!, {r2-r9, lr}
 
-	mov r4, r1									;inner loop counter
+	mov r4, r1									@inner loop counter
 	mov r3, r4
 	sub r1, r1, #1
-	mov r9, r1									; outer loop counter
+	mov r9, r1									@ outer loop counter
 
 outer_loop:
 	mov r5, r0
 	mov r4, r3
 
 inner_loop:
-	ldr r6, [r5], #1							; loop at following val
+	ldr r6, [r5], #1							@ loop at following val
 	ldr r7, [r5]
 	cmp r7, r6
 
