@@ -4,53 +4,43 @@
 	
 
 _start:
-	ldr r0, =array				@loading the adrs of array into r0
-	mov r7, #0					@ init outer loop counter to 0
-	mov r8, #0					@ init inner loop counter to 0
-	mov pc, lr 					@ returning to loop
 
-swap:
-	mov r5, [r1]
-	str [r2], [r1]
-	str r5, [r2]
+	ldr r0, =array
+	mov r1, 6
 
+	stmfd sp!, {r2-r9, lr}
+
+	mov r4, r1									;inner loop counter
+	mov r3, r4
+	sub r1, r1, #1
+	mov r9, r1									; outer loop counter
 
 outer_loop:
-	cmp r7, #5
-	bgt done
-	sub r6, #5, r7
+	mov r5, r0
+	mov r4, r3
 
 inner_loop:
-	cmp r8, r6
-	bgt in_done
+	ldr r6, [r5], #1							; loop at following val
+	ldr r7, [r5]
+	cmp r7, r6
 
-	ldr r1, [r0, r8, lsl #0]	@accessing array at r8
-	add r3, r8, #1
-	ldr r2, [r0, r3, lsl #0]
+	strls r6, [r5]
+	strls r7, [r5, #-1]
 
-	cmp r1, r2
-	bgt swap
+	subs r4, r4, #1
+	bne inner_loop
 
-	add r8, r8, #1				@ incrementing inner loop counter
-	bal inner_loop
+	subs r9, r9, #1
+	bne outer_loop
 
-in_done:						@ inner loop is done 
-	add r7, r7, #1				@ incrementing outer loop counter
-	bal outer_loop
+	ldmfd sp!, {r2-r9, pc}^
 
-
-done:
-	mov r0, #1		@ output is monitor
-	ldr r1, =array	@ address of string
-	ldr r2, #6		@ the number of chars to be printed
-	mov r7, #4		@ system call #4
-	swi 0
-	@exit for loop
-
-
-
-
-
+_write:
+	MOV R0, #1		@ output is monitor
+	LDR R1, =array 	@ address of string
+	LDR R2, #6 		@ the number of chars to be printed
+	MOV R7, #4		@ system call #4
+	SWI 0
 
 _exit:
 	mov r7, #1
