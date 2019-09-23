@@ -11,7 +11,8 @@ array:
 .text
 start:
 
-	ldr r0, =array								@ loading address of array into register r0
+	ldr r12, =array								@ loading address of array into register r0
+	ldr r0, [r12]
 	mov r1, #size								@ moving size into register r1
 
 	stmfd sp!, {r2-r9, lr}  					@ loading unto memory stack the value of reg 2 to 9 + link reg
