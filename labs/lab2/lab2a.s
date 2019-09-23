@@ -11,8 +11,8 @@ array:
 .text
 start:
 
-	ldr r12, =array								@ loading address of array into register r0
-	ldr r0, [r12]
+	ldr r0, =array								@ loading address of array into register r0
+	@ ldr , [r12]
 	mov r1, #size								@ moving size into register r1
 
 	stmfd sp!, {r2-r9, lr}  					@ loading unto memory stack the value of reg 2 to 9 + link reg
@@ -46,7 +46,7 @@ swap:
 write:
 	mov r0, #1									@ output is monitor
 	ldr r1, =array 								@ address of string
-	ldr r2, #6 									@ the number of chars to be printed
+	mov r2, #6 									@ the number of chars to be printed
 	mov r7, #4									@ system call #4 for write
 	SWI 0										@ software interrupt
 
