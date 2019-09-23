@@ -3,13 +3,14 @@
 
 .equ size, 6									@ setting var size to 6 
 .equ byte, 1
-.global start
+.global _start
+
 .data
 array:
 	.ascii "538129"								@ array of size integer stored a char bytes
 
 .text
-start:
+_start:
 
 	ldr r0, =array								@ loading address of array into register r0
 	@ ldr , [r12]
@@ -50,7 +51,7 @@ write:
 	mov r7, #4									@ system call #4 for write
 	SWI 0										@ software interrupt
 
-exit:
+_exit:
 	mov r7, #1									@ exit system call
 	swi 0
 
