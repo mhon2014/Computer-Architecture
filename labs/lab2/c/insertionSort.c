@@ -5,14 +5,14 @@
 
 void insertionSort(char str[], int size);
 void swap(char *a, char *b);
-void printstray(char stray[], int size);
+void printArray(char array[], int size);
 
 int main(void)
 {
-    char stray[6] = {'5', '3', '8', '1', '2', '9'};
-    printstray(stray, 6);
-    insertionSort(stray, 6);
-    printstray(stray, 6);
+    char array[6] = {'5', '3', '8', '1', '2', '9'};
+    printstray(array, 6);
+    insertionSort(array, 6);
+    printstray(array, 6);
     return 0;
 }
 
@@ -42,12 +42,12 @@ void swap(char *a, char *b)
     *b = tmp;
 }
 
-void printstray(char stray[], int size)
+void printstray(char array[], int size)
 {
     printf("[");
     for (int i = 0; i < size; ++i)
     {
-        printf(" %c,", stray[i]);
+        printf(" %c,", array[i]);
     }
     printf(" ]\n");
 }
