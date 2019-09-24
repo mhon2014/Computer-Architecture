@@ -28,26 +28,20 @@ outer_loop:
 	bge outer_done								@ r4 = 6
 
 inner_loop:
-	sub r4, #lastIndex, r3
+	sub r4, #5, r3
 	cmp r2, r4									@ limit of inner loop counter
 	bge inner_done								@ when loop ends
 	
 	ldrb r5, [r1, r2]								@ obtaining array[i]
-	ldrb r6, [r1, r2, #1]							@ obtaining array[i]
+	add r8, r2, #1
+	ldrb r6, [r1, r8]							@ obtaining array[i]
 	cmp r5, r6
 	ble inner_done
 swap:
 	str r6, [r1, r2]								@ store value array[i + 1] into memory
-	str r5, [r1, r2, #1]						@ store value array[i] into memory
+	str r5, [r1, r8]						@ store value array[i] into memory
 
-no_swap:
-	subs r4, r4, #1 							@ decrementing inner loop counter
-	bne inner_loop								@ if result not zero, go back to inner_loop
-
-	subs r9, r9, #1								@ decrementing outer loop counte 
-	bne outer_loop								@ if result not zero, go back to outer_loop
-
-	@ ldmfd sp!, {r2-r9, pc}^						@ load from memory into registers r2-r9
+						@ load from memory into registers r2-r9
 
 
 
