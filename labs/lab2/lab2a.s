@@ -19,13 +19,13 @@ _start:
 	@ stmfd sp!, {r2-r9, lr}  					@ loading unto memory stack the value of reg 2 to 9 + link reg
 
 bubbleSort:
-	mov r2, #0									@ r2 set as inner loop counter with start value 'size'
 	mov r3, #0									@ r3 set as outer loop counter
 	
 
 outer_loop:
-	cmp r2, #lastIndex
-	bge outer_done								@ r4 = 6
+	cmp r3, #lastIndex
+	bge outer_done		
+	mov r2, #0									@ r2 set as inner loop counter with start value 'size'
 
 inner_loop:
 	sub r4, r3, #(lastIndex)
