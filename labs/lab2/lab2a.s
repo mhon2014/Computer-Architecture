@@ -28,7 +28,7 @@ outer_loop:
 	bge outer_done								@ r4 = 6
 
 inner_loop:
-	sub r4, #lastIndex, r3
+	sub r4, #(lastIndex - r3)
 	cmp r2, r4									@ limit of inner loop counter
 	bge inner_done								@ when loop ends
 	
