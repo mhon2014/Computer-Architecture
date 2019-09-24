@@ -35,9 +35,9 @@ inner_loop:
 	cmp r2, r4									@ limit of inner loop counter
 	bge inner_done								@ when loop ends
 	
-	ldrb r5, [r0, r2]								@ obtaining array[i]
+	ldrb r5, [r0, +r2]								@ obtaining array[i]
 	add r8, r2, #1
-	ldrb r6, [r0, r8]							@ obtaining array[i]
+	ldrb r6, [r0, +r8]							@ obtaining array[i]
 	cmp r5, r6
 	ble inner_incr
 
@@ -58,7 +58,7 @@ inner_done:
 	b outer_loop
 
 outer_done:
-write:
+_write:
 	mov r0, #1									@ output is monitor
 	ldr r1, =array 								@ address of string
 	mov r2, #6 									@ the number of chars to be printed
