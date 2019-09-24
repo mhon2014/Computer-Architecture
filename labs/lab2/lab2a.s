@@ -39,10 +39,11 @@ inner_loop:
 	add r8, r2, #1
 	ldrb r6, [r0, r8]							@ obtaining array[i]
 	cmp r5, r6
-	ble inner_done
+	ble inner_loop
 swap:
 	str r6, [r0, r2]								@ store value array[i + 1] into memory
 	str r5, [r0, r8]						@ store value array[i] into memory
+	bal inner_loop
 
 						@ load from memory into registers r2-r9
 
