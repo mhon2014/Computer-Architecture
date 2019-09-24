@@ -61,7 +61,7 @@ outer_done:
 _write:
 	mov r0, #1									@ output is monitor
 	ldr r1, =array 								@ address of string
-	mov r2, #6 									@ the number of chars to be printed
+	mov r2, #size									@ the number of chars to be printed
 	mov r7, #4									@ system call #4 for write
 	SWI 0										@ software interrupt
 
