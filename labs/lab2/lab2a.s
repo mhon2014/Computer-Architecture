@@ -42,9 +42,9 @@ inner_loop:
 	ble inner_incr
 
 swap:
-	str r6, [r0, r2]								@ store value array[i + 1] into memory
-	str r5, [r0, r8]						@ store value array[i] into memory
-	
+	str r6, [r0, +r2]								@ store value array[i + 1] into memory
+	str r5, [r0, +r8]						@ store value array[i] into memory
+
 inner_incr:
 	add r2, r2, #1
 	bal inner_loop
