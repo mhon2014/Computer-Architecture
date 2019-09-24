@@ -41,8 +41,8 @@ inner_loop:
 	cmp r5, r6
 	ble inner_done
 swap:
-	str r6, [r1, r2]								@ store value array[i + 1] into memory
-	str r5, [r1, r8]						@ store value array[i] into memory
+	str r6, [r0, r2]								@ store value array[i + 1] into memory
+	str r5, [r0, r8]						@ store value array[i] into memory
 
 						@ load from memory into registers r2-r9
 
