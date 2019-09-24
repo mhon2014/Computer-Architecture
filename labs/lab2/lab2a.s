@@ -29,7 +29,7 @@ outer_loop:
 
 inner_loop:
 	sub r4, r3, #(lastIndex)
-	mov r12, -1
+	mov r12, #-1
 	mul r4, r4, r12
 	cmp r2, r4									@ limit of inner loop counter
 	bge inner_done								@ when loop ends
