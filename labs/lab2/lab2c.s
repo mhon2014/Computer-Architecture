@@ -13,13 +13,14 @@ mask:
 
 .text                                           @ code section of the program
 _start:
-    ldr r0, =val                                @ loading hex val into register r0
+    @ ldr r0, =val                                @ loading hex val into register r0
+    ldr r0, 0xC0000034
     ldr r1, =bin                                @ loading blank binary
-    mov r2, #0                                  @ r2 as loop counter with initial val 0
+    mov r2, #31                                 @ r2 as loop counter with initial val 0
 
 loop:
-    cmp r2, #32                                 @ loop 32 times for every digit 
-    bge done                                    @ exit loop
+    cmp r2, #0                                @ loop 32 times for every digit 
+    blt done                                    @ exit loop
 
     mov r3, #1
     tst r0, r3, LSL r2            @ test for bit at position r2 with 1
@@ -30,7 +31,7 @@ toggle:
     strb r9, [r1, +r2]                          @ inserting a one at position r2
 
 incr:                                           @ increment portion of loop
-    add r2, r2, #1
+    sub r2, r2, #1
     bal loop
 
 
