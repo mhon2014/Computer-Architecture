@@ -13,6 +13,7 @@ _start:
     ldr r0, =0xC0000034
     ldr r1, =bin                                @ loading blank binary
     mov r2, #31                                 @ r2 as loop counter with initial val 0
+    mov r7, #31                                 @ last int
 
 loop:
     cmp r2, #0                                @ loop 32 times for every digit 
@@ -25,7 +26,8 @@ loop:
 
 toggle: 
     mov r9, #49
-    strb r9, [r1, +r2]                          @ inserting a one at position r2
+    sub r8, r7, r2
+    strb r9, [r1, +r8]                          @ inserting a one at position r2
 
 incr:                                           @ increment portion of loop
     sub r2, r2, #1
