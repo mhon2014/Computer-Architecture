@@ -46,7 +46,7 @@ inner_done:
 	add r3, r3, #1								@ incrementing outer_loop counter
 	add r7, r2, #1	
 	strb r4, [r0, +r7]
-	b outer_loop
+	bal outer_loop
 
 outer_done:
 _write:
