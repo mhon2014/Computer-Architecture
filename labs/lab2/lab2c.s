@@ -14,7 +14,7 @@ mask:
 .text                                           @ code section of the program
 _start:
     @ ldr r0, =val                                @ loading hex val into register r0
-    mov r0, 0xC0000034
+    ldr r0, =0xC0000034
     ldr r1, =bin                                @ loading blank binary
     mov r2, #31                                 @ r2 as loop counter with initial val 0
 
