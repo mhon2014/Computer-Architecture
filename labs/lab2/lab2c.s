@@ -7,6 +7,8 @@
     .word 0xC0000034
 .bin:
     .ascii "00000000000000000000000000000000"
+.mask: 
+    .word 0x00000001
 
 
 .text                                           @ code section of the program
@@ -21,7 +23,8 @@ loop:
     cmp r2, #32                                 @ loop 32 times for every digit 
     bge done                                    @ exit loop
 
-    tst             @ test for bit at position r2 with 1
+    mov r3, #1
+    tst r0, r3, LSL r2            @ test for bit at position r2 with 1
     bne incr                                    @ if after test, it is a zero, skip to incr
 
 toggle: 
