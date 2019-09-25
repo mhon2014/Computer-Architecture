@@ -19,7 +19,7 @@ loop:
     blt done                                    @ exit loop
 
     ldr r3, =0x00000001
-    lsl r4, r3, #1
+    lsl r4, r3, r2
     tst r0, r4           @ test for bit at position r2 with 1
     bne incr                                    @ if after test, it is a zero, skip to incr
 
