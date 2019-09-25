@@ -3,17 +3,15 @@
 .global _start
 
 .data                                           @ data section of the program
-.val:
+val:
     .word 0xC0000034
-.bin:
+bin:
     .ascii "00000000000000000000000000000000"
-.mask: 
+mask: 
     .word 0x00000001
 
 
 .text                                           @ code section of the program
-
-
 _start:
     ldr r0, =val                                @ loading hex val into register r0
     ldr r1, =bin                                @ loading blank binary
@@ -48,3 +46,5 @@ _write:
 _exit: 
     mov r7, #1									@ exit system call
 	swi 0
+
+
