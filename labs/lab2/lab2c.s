@@ -3,12 +3,8 @@
 .global _start
 
 .data                                           @ data section of the program
-val:
-    .word 0xC0000034
 bin:
     .ascii "00000000000000000000000000000000"
-mask: 
-    .word 0x00000001
 
 
 .text                                           @ code section of the program
@@ -22,8 +18,9 @@ loop:
     cmp r2, #0                                @ loop 32 times for every digit 
     blt done                                    @ exit loop
 
-    mov r3, #1
-    tst r0, r3, LSL r2            @ test for bit at position r2 with 1
+    ldr r3, 0x00000001
+    lsl r4, r3, #1
+    tst r0, r4           @ test for bit at position r2 with 1
     bne incr                                    @ if after test, it is a zero, skip to incr
 
 toggle: 
