@@ -50,7 +50,7 @@ loop:
             mov r1, sp            @ Moving the address of the new space into R1
             bl scanf              @ Calling scanf
             ldr r1, [sp]          @ Get the value captured by scanf into r1
-            mov r2, r1            @ saving first number
+            mov r5, r1            @ saving first number
             add sp, sp, #4        @ Restoring the SP to its original state
 
 
@@ -62,13 +62,12 @@ loop:
             mov r1, sp            @ Moving the address of the new space into R1
             bl scanf              @ Calling scanf
             ldr r1, [sp]          @ Get the value captured by scanf into r1
-            mov r3, r1            @ saving second number
+            mov r6, r1            @ saving second number
             add sp, sp, #4        @ Restoring the SP to its original state
 
 
             @ computing the result
-        addb:
-            add r4, r2, r3
+            add r4, r5, r6
             ldr r0, =result
             mov r1, r4
             bl printf
@@ -87,7 +86,7 @@ loop:
             mov r1, sp            @ Moving the address of the new space into R1
             bl scanf              @ Calling scanf
             ldr r1, [sp]          @ Get the value captured by scanf into r1
-            mov r2, r1            @ saving first number
+            mov r5, r1            @ saving first number
             add sp, sp, #4        @ Restoring the SP to its original state
 
 
@@ -99,12 +98,12 @@ loop:
             mov r1, sp            @ Moving the address of the new space into R1
             bl scanf              @ Calling scanf
             ldr r1, [sp]          @ Get the value captured by scanf into r1
-            mov r3, r1            @ saving second number
+            mov r6, r1            @ saving second number
             add sp, sp, #4        @ Restoring the SP to its original state
 
 
             @ computing the result
-            sub r4, r2, r3
+            sub r4, r5, r6
             ldr r0, =result
             mov r1, r4
             bl printf
@@ -123,7 +122,7 @@ loop:
             mov r1, sp            @ Moving the address of the new space into R1
             bl scanf              @ Calling scanf
             ldr r1, [sp]          @ Get the value captured by scanf into r1
-            mov r2, r1            @ saving first number
+            mov r5, r1            @ saving first number
             add sp, sp, #4        @ Restoring the SP to its original state
 
 
@@ -135,12 +134,12 @@ loop:
             mov r1, sp            @ Moving the address of the new space into R1
             bl scanf              @ Calling scanf
             ldr r1, [sp]          @ Get the value captured by scanf into r1
-            mov r3, r1            @ saving second number
+            mov r6, r1            @ saving second number
             add sp, sp, #4        @ Restoring the SP to its original state
 
 
             @ computing the result
-            mul r4, r2, r3
+            mul r4, r5, r6
             ldr r0, =result
             mov r1, r4
             bl printf

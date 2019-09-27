@@ -5,4 +5,4 @@ lab3b:
 	gcc -o lab3b lab3b.s
 	
 clean:
-	rm *.o lab3a lab3b
+	rm lab3a lab3b
