@@ -8,11 +8,11 @@
 .text
 main:
     push {r4-r12, lr}       @ Saving the Registers
-    mov r12, #1
+    mov r8, #1
 
 
 loop:
-    cmp r12, #0
+    cmp r8, #0
     beq done
 
     ldr r0, =calculator
@@ -24,16 +24,16 @@ loop:
     mov r1, sp            @ Moving the address of the new space into R1
     bl scanf              @ Calling scanf
     ldr r1, [sp]          @ Get the value captured by scanf into r1
-    mov r12, r1           @ save the option to r12
+    mov r8, r1           @ save the option to r12
     add sp, sp, #4        @ Restoring the SP to its original state
 
     @use switch statement to check the proper calculator function
     switch:
-        cmp r12, #1
+        cmp r8, #1
         beq case1
-        cmp r12, #2
+        cmp r8, #2
         beq case2
-        cmp r12, #3
+        cmp r8, #3
         beq case3
         b default
 
