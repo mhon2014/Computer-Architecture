@@ -67,6 +67,7 @@ loop:
 
 
             @ computing the result
+        addb:
             add r4, r2, r3
             ldr r0, =result
             mov r1, r4
