@@ -51,3 +51,4 @@ enterSecond: .asciz "Enter the second number: "
 inputFormat: .asciz "%f"
 result:      .asciz "The result of adding is: %f.\n"
 result2:		 .asciz "%f is greater than %f\n\n"
+
