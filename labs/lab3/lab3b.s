@@ -7,7 +7,7 @@
 
 .text
 main:
-    push {r4-r12, lr}       @ Saving the Registers
+    push {r0, lr}       @ Saving the Registers
     mov r12, #1
 
 
@@ -47,13 +47,14 @@ loop:
             ldr r0, =entryOne
             bl printf
             @ saving user input
-            sub sp, sp, #4              @ Making space in the stack
+            sub sp, sp, #8              @ Making space in the stack
             ldr r0, =inputFormatFloat   @ Loading the address of the format in R0
             mov r1, sp                  @ Moving the address of the new space into R1
             bl scanf                    @ Calling scanf
-            vldr s1, [sp]                @ Get the value captured by scanf into r1
-            vmov s2, s1                  @ saving first number
-            add sp, sp, #4              @ Restoring the SP to its original state
+            vldr s2, [sp]                @ Get the value captured by scanf into r1
+            @ vmov s2, s1                  @ saving first number
+            @ add sp, sp, #4              @ Restoring the SP to its original state
+            vcvt.f64.f32 d2, s2
 
 
             ldr r0, =entryTwo
@@ -63,33 +64,35 @@ loop:
             ldr r0, =inputFormatFloat   @ Loading the address of the format in R0
             mov r1, sp                  @ Moving the address of the new space into R1
             bl scanf                    @ Calling scanf
-            vldr s1, [sp]                @ Get the value captured by scanf into r1
-            vmov s3, s1                  @ saving second number
-            add sp, sp, #4              @ Restoring the SP to its original state
+            vldr s3, [sp]                @ Get the value captured by scanf into r1
+            @ vmov s3, s1                  @ saving second number
+            @ add sp, sp, #4              @ Restoring the SP to its original state
+            vcvt.f64.f32 d3, s3
 
 
             @ computing the result
-            vadd.f32 s4, s2, s3
-            vmov r1, s4
+            vadd.f64 d0, d2, d3
+            vmov r2, r3, d0
             ldr r0, =result
             bl printf
 
             bal break
 
         case2:      @sub
-            ldr r0, =subStr
+            ldr r0, =addStr
             bl printf
 
             ldr r0, =entryOne
             bl printf
             @ saving user input
-            sub sp, sp, #4              @ Making space in the stack
+            sub sp, sp, #8              @ Making space in the stack
             ldr r0, =inputFormatFloat   @ Loading the address of the format in R0
             mov r1, sp                  @ Moving the address of the new space into R1
             bl scanf                    @ Calling scanf
-            vldr s1, [sp]                @ Get the value captured by scanf into r1
-            vmov s2, s1                  @ saving first number
-            add sp, sp, #4              @ Restoring the SP to its original state
+            vldr s2, [sp]                @ Get the value captured by scanf into r1
+            @ vmov s2, s1                  @ saving first number
+            @ add sp, sp, #4              @ Restoring the SP to its original state
+            vcvt.f64.f32 d2, s2
 
 
             ldr r0, =entryTwo
@@ -99,33 +102,35 @@ loop:
             ldr r0, =inputFormatFloat   @ Loading the address of the format in R0
             mov r1, sp                  @ Moving the address of the new space into R1
             bl scanf                    @ Calling scanf
-            vldr s1, [sp]                @ Get the value captured by scanf into r1
-            vmov s3, s1                  @ saving second number
-            add sp, sp, #4              @ Restoring the SP to its original state
+            vldr s3, [sp]                @ Get the value captured by scanf into r1
+            @ vmov s3, s1                  @ saving second number
+            @ add sp, sp, #4              @ Restoring the SP to its original state
+            vcvt.f64.f32 d3, s3
 
 
             @ computing the result
-            vsub.f32 s4, s2, s3
+            vsub.f64 d0, d2, d3
+            vmov r2, r3, d0
             ldr r0, =result
-            vmov r1, s4
             bl printf
 
             bal break
 
         case3:      @multiply
-            ldr r0, =mulStr
+            ldr r0, =addStr
             bl printf
 
             ldr r0, =entryOne
             bl printf
             @ saving user input
-            sub sp, sp, #4              @ Making space in the stack
+            sub sp, sp, #8              @ Making space in the stack
             ldr r0, =inputFormatFloat   @ Loading the address of the format in R0
             mov r1, sp                  @ Moving the address of the new space into R1
             bl scanf                    @ Calling scanf
-            vldr s1, [sp]                @ Get the value captured by scanf into r1
-            vmov s2, s1                  @ saving first number
-            add sp, sp, #4              @ Restoring the SP to its original state
+            vldr s2, [sp]                @ Get the value captured by scanf into r1
+            @ vmov s2, s1                  @ saving first number
+            @ add sp, sp, #4              @ Restoring the SP to its original state
+            vcvt.f64.f32 d2, s2
 
 
             ldr r0, =entryTwo
@@ -135,33 +140,35 @@ loop:
             ldr r0, =inputFormatFloat   @ Loading the address of the format in R0
             mov r1, sp                  @ Moving the address of the new space into R1
             bl scanf                    @ Calling scanf
-            vldr s1, [sp]                @ Get the value captured by scanf into r1
-            vmov s3, s1                  @ saving second number
-            add sp, sp, #4              @ Restoring the SP to its original state
+            vldr s3, [sp]                @ Get the value captured by scanf into r1
+            @ vmov s3, s1                  @ saving second number
+            @ add sp, sp, #4              @ Restoring the SP to its original state
+            vcvt.f64.f32 d3, s3
 
 
             @ computing the result
-            vmul.f32 s4, s2, s3
+            vmul.f64 d0, d2, d3
+            vmov r2, r3, d0
             ldr r0, =result
-            vmov r1, s4
             bl printf
 
             bal break
         
         case4:      @add
-            ldr r0, =divStr
+            ldr r0, =addStr
             bl printf
 
             ldr r0, =entryOne
             bl printf
             @ saving user input
-            sub sp, sp, #4              @ Making space in the stack
+            sub sp, sp, #8              @ Making space in the stack
             ldr r0, =inputFormatFloat   @ Loading the address of the format in R0
             mov r1, sp                  @ Moving the address of the new space into R1
             bl scanf                    @ Calling scanf
-            vldr s1, [sp]                @ Get the value captured by scanf into r1
-            vmov s2, s1                  @ saving first number
-            add sp, sp, #4              @ Restoring the SP to its original state
+            vldr s2, [sp]                @ Get the value captured by scanf into r1
+            @ vmov s2, s1                  @ saving first number
+            @ add sp, sp, #4              @ Restoring the SP to its original state
+            vcvt.f64.f32 d2, s2
 
 
             ldr r0, =entryTwo
@@ -171,15 +178,16 @@ loop:
             ldr r0, =inputFormatFloat   @ Loading the address of the format in R0
             mov r1, sp                  @ Moving the address of the new space into R1
             bl scanf                    @ Calling scanf
-            vldr s1, [sp]                @ Get the value captured by scanf into r1
-            vmov s3, s1                  @ saving second number
-            add sp, sp, #4              @ Restoring the SP to its original state
+            vldr s3, [sp]                @ Get the value captured by scanf into r1
+            @ vmov s3, s1                  @ saving second number
+            @ add sp, sp, #4              @ Restoring the SP to its original state
+            vcvt.f64.f32 d3, s3
 
 
             @ computing the result
-            vdiv.f32 s4, s2, s3
+            vdiv.f64 d0, d2, d3
+            vmov r2, r3, d0
             ldr r0, =result
-            vmov r1, s4
             bl printf
 
             bal break
