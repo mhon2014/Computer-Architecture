@@ -35,11 +35,49 @@ loop:
         beq case2
         cmp r12, #3
         beq case3
+        cmp r12, #4
+        beq case4
         b default
 
 
         case1:      @add
             ldr r0, =addStr
+            bl printf
+
+            ldr r0, =entryOne
+            bl printf
+            @ saving user input
+            sub sp, sp, #4              @ Making space in the stack
+            ldr r0, =inputFormatFloat   @ Loading the address of the format in R0
+            mov r1, sp                  @ Moving the address of the new space into R1
+            bl scanf                    @ Calling scanf
+            vldr s1, [sp]                @ Get the value captured by scanf into r1
+            vmov s2, s1                  @ saving first number
+            add sp, sp, #4              @ Restoring the SP to its original state
+
+
+            ldr r0, =entryTwo
+            bl printf
+            @ saving user input
+            sub sp, sp, #4              @ Making space in the stack
+            ldr r0, =inputFormatFloat   @ Loading the address of the format in R0
+            mov r1, sp                  @ Moving the address of the new space into R1
+            bl scanf                    @ Calling scanf
+            vldr s1, [sp]                @ Get the value captured by scanf into r1
+            vmov s3, s1                  @ saving second number
+            add sp, sp, #4              @ Restoring the SP to its original state
+
+
+            @ computing the result
+            vadd.f32 s4, s2, s3
+            ldr r0, =result
+            vmov r1, s4
+            bl printf
+
+            bal break
+
+        case2:      @sub
+            ldr r0, =subStr
             bl printf
 
             ldr r0, =entryOne
@@ -57,53 +95,17 @@ loop:
             ldr r0, =entryTwo
             bl printf
             @ saving user input
-            sub sp, sp, #4        @ Making space in the stack
-            ldr r0, =inputFormat  @ Loading the address of the format in R0
-            mov r1, sp            @ Moving the address of the new space into R1
-            bl scanf              @ Calling scanf
-            ldr r1, [sp]          @ Get the value captured by scanf into r1
-            mov r3, r1            @ saving second number
-            add sp, sp, #4        @ Restoring the SP to its original state
+            sub sp, sp, #4              @ Making space in the stack
+            ldr r0, =inputFormatFloat   @ Loading the address of the format in R0
+            mov r1, sp                  @ Moving the address of the new space into R1
+            bl scanf                    @ Calling scanf
+            ldr r1, [sp]                @ Get the value captured by scanf into r1
+            mov r3, r1                  @ saving second number
+            add sp, sp, #4              @ Restoring the SP to its original state
 
 
             @ computing the result
-            add r4, r2, r3
-            ldr r0, =result
-            mov r1, r4
-            bl printf
-
-            bal break
-
-        case2:      @sub
-            ldr r0, =subStr
-            bl printf
-
-            ldr r0, =entryOne
-            bl printf
-            @ saving user input
-            sub sp, sp, #4        @ Making space in the stack
-            ldr r0, =inputFormat  @ Loading the address of the format in R0
-            mov r1, sp            @ Moving the address of the new space into R1
-            bl scanf              @ Calling scanf
-            ldr r1, [sp]          @ Get the value captured by scanf into r1
-            mov r2, r1            @ saving first number
-            add sp, sp, #4        @ Restoring the SP to its original state
-
-
-            ldr r0, =entryTwo
-            bl printf
-            @ saving user input
-            sub sp, sp, #4        @ Making space in the stack
-            ldr r0, =inputFormat  @ Loading the address of the format in R0
-            mov r1, sp            @ Moving the address of the new space into R1
-            bl scanf              @ Calling scanf
-            ldr r1, [sp]          @ Get the value captured by scanf into r1
-            mov r3, r1            @ saving second number
-            add sp, sp, #4        @ Restoring the SP to its original state
-
-
-            @ computing the result
-            sub r4, r2, r3
+            vsub r4, r2, r3
             ldr r0, =result
             mov r1, r4
             bl printf
@@ -117,29 +119,65 @@ loop:
             ldr r0, =entryOne
             bl printf
             @ saving user input
-            sub sp, sp, #4        @ Making space in the stack
-            ldr r0, =inputFormat  @ Loading the address of the format in R0
-            mov r1, sp            @ Moving the address of the new space into R1
-            bl scanf              @ Calling scanf
-            ldr r1, [sp]          @ Get the value captured by scanf into r1
-            mov r2, r1            @ saving first number
-            add sp, sp, #4        @ Restoring the SP to its original state
+            sub sp, sp, #4              @ Making space in the stack
+            ldr r0, =inputFormatFloat   @ Loading the address of the format in R0
+            mov r1, sp                  @ Moving the address of the new space into R1
+            bl scanf                    @ Calling scanf
+            ldr r1, [sp]                @ Get the value captured by scanf into r1
+            mov r2, r1                  @ saving first number
+            add sp, sp, #4              @ Restoring the SP to its original state
 
 
             ldr r0, =entryTwo
             bl printf
             @ saving user input
-            sub sp, sp, #4        @ Making space in the stack
-            ldr r0, =inputFormat  @ Loading the address of the format in R0
-            mov r1, sp            @ Moving the address of the new space into R1
-            bl scanf              @ Calling scanf
-            ldr r1, [sp]          @ Get the value captured by scanf into r1
-            mov r3, r1            @ saving second number
-            add sp, sp, #4        @ Restoring the SP to its original state
+            sub sp, sp, #4              @ Making space in the stack
+            ldr r0, =inputFormatFloat   @ Loading the address of the format in R0
+            mov r1, sp                  @ Moving the address of the new space into R1
+            bl scanf                    @ Calling scanf
+            ldr r1, [sp]                @ Get the value captured by scanf into r1
+            mov r3, r1                  @ saving second number
+            add sp, sp, #4              @ Restoring the SP to its original state
 
 
             @ computing the result
-            mul r4, r2, r3
+            vmul r4, r2, r3
+            ldr r0, =result
+            mov r1, r4
+            bl printf
+
+            bal break
+        
+        case4:      @add
+            ldr r0, =divStr
+            bl printf
+
+            ldr r0, =entryOne
+            bl printf
+            @ saving user input
+            sub sp, sp, #4              @ Making space in the stack
+            ldr r0, =inputFormatFloat   @ Loading the address of the format in R0
+            mov r1, sp                  @ Moving the address of the new space into R1
+            bl scanf                    @ Calling scanf
+            ldr r1, [sp]                @ Get the value captured by scanf into r1
+            mov r2, r1                  @ saving first number
+            add sp, sp, #4              @ Restoring the SP to its original state
+
+
+            ldr r0, =entryTwo
+            bl printf
+            @ saving user input
+            sub sp, sp, #4              @ Making space in the stack
+            ldr r0, =inputFormatFloat   @ Loading the address of the format in R0
+            mov r1, sp                  @ Moving the address of the new space into R1
+            bl scanf                    @ Calling scanf
+            ldr r1, [sp]                @ Get the value captured by scanf into r1
+            mov r3, r1                  @ saving second number
+            add sp, sp, #4              @ Restoring the SP to its original state
+
+
+            @ computing the result
+            vdiv r4, r2, r3
             ldr r0, =result
             mov r1, r4
             bl printf
@@ -164,12 +202,13 @@ _exit:
 addStr:             .asciz "--- Add ---\n"
 subStr:             .asciz "--- Subtract ---\n"
 mulStr:             .asciz "--- Multiply ---\n"
+divStr:             .asciz "--- Division ---\n"
 entryOne:           .asciz "Enter the first number: "
 inputFormat:        .ascii "%d"
 inputFormatFloat:   .asciz "%lf"
 entryTwo:           .asciz "Enter the second number: "
 result:             .asciz "The result is: %lf.\n\n"
 calculator:
-    .asciz "Calculator\n\t1) Add\n\t2) Subtract\n\t3) Multiply\n\t0) Exit\n\nChoose your option:"
+    .asciz "Calculator\n\t1) Add\n\t2) Subtract\n\t3) Multiply\n\t4) Divide\n\t0) Exit\n\nChoose your option:"
 
 
