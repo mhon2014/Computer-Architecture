@@ -70,8 +70,8 @@ loop:
 
             @ computing the result
             vadd.f32 s4, s2, s3
-            ldr r0, =result
             vmov r1, s4
+            ldr r0, =result
             bl printf
 
             bal break
@@ -205,9 +205,9 @@ mulStr:             .asciz "--- Multiply ---\n"
 divStr:             .asciz "--- Division ---\n"
 entryOne:           .asciz "Enter the first number: "
 inputFormat:        .asciz "%d"
-inputFormatFloat:   .asciz "%lf"
+inputFormatFloat:   .asciz "%f"
 entryTwo:           .asciz "Enter the second number: "
-result:             .asciz "The result is: %lf.\n\n"
+result:             .asciz "The result is: %f.\n\n"
 calculator:
     .asciz "Calculator\n\t1) Add\n\t2) Subtract\n\t3) Multiply\n\t4) Divide\n\t0) Exit\n\nChoose your option:"
 
