@@ -87,8 +87,8 @@ loop:
             ldr r0, =inputFormatFloat   @ Loading the address of the format in R0
             mov r1, sp                  @ Moving the address of the new space into R1
             bl scanf                    @ Calling scanf
-            ldr r1, [sp]                @ Get the value captured by scanf into r1
-            mov r2, r1                  @ saving first number
+            vldr s1, [sp]                @ Get the value captured by scanf into r1
+            vmov s2, s1                  @ saving first number
             add sp, sp, #4              @ Restoring the SP to its original state
 
 
@@ -99,15 +99,15 @@ loop:
             ldr r0, =inputFormatFloat   @ Loading the address of the format in R0
             mov r1, sp                  @ Moving the address of the new space into R1
             bl scanf                    @ Calling scanf
-            ldr r1, [sp]                @ Get the value captured by scanf into r1
-            mov r3, r1                  @ saving second number
+            vldr s1, [sp]                @ Get the value captured by scanf into r1
+            vmov s3, s1                  @ saving second number
             add sp, sp, #4              @ Restoring the SP to its original state
 
 
             @ computing the result
-            vsub r4, r2, r3
+            vsub.f32 s4, s2, s3
             ldr r0, =result
-            mov r1, r4
+            vmov r1, s4
             bl printf
 
             bal break
@@ -123,8 +123,8 @@ loop:
             ldr r0, =inputFormatFloat   @ Loading the address of the format in R0
             mov r1, sp                  @ Moving the address of the new space into R1
             bl scanf                    @ Calling scanf
-            ldr r1, [sp]                @ Get the value captured by scanf into r1
-            mov r2, r1                  @ saving first number
+            vldr s1, [sp]                @ Get the value captured by scanf into r1
+            vmov s2, s1                  @ saving first number
             add sp, sp, #4              @ Restoring the SP to its original state
 
 
@@ -135,15 +135,15 @@ loop:
             ldr r0, =inputFormatFloat   @ Loading the address of the format in R0
             mov r1, sp                  @ Moving the address of the new space into R1
             bl scanf                    @ Calling scanf
-            ldr r1, [sp]                @ Get the value captured by scanf into r1
-            mov r3, r1                  @ saving second number
+            vldr s1, [sp]                @ Get the value captured by scanf into r1
+            vmov s3, s1                  @ saving second number
             add sp, sp, #4              @ Restoring the SP to its original state
 
 
             @ computing the result
-            vmul r4, r2, r3
+            vmul.f32 s4, s2, s3
             ldr r0, =result
-            mov r1, r4
+            vmov r1, s4
             bl printf
 
             bal break
@@ -159,8 +159,8 @@ loop:
             ldr r0, =inputFormatFloat   @ Loading the address of the format in R0
             mov r1, sp                  @ Moving the address of the new space into R1
             bl scanf                    @ Calling scanf
-            ldr r1, [sp]                @ Get the value captured by scanf into r1
-            mov r2, r1                  @ saving first number
+            vldr s1, [sp]                @ Get the value captured by scanf into r1
+            vmov s2, s1                  @ saving first number
             add sp, sp, #4              @ Restoring the SP to its original state
 
 
@@ -171,15 +171,15 @@ loop:
             ldr r0, =inputFormatFloat   @ Loading the address of the format in R0
             mov r1, sp                  @ Moving the address of the new space into R1
             bl scanf                    @ Calling scanf
-            ldr r1, [sp]                @ Get the value captured by scanf into r1
-            mov r3, r1                  @ saving second number
+            vldr s1, [sp]                @ Get the value captured by scanf into r1
+            vmov s3, s1                  @ saving second number
             add sp, sp, #4              @ Restoring the SP to its original state
 
 
             @ computing the result
-            vdiv r4, r2, r3
+            vdiv.f32 s4, s2, s3
             ldr r0, =result
-            mov r1, r4
+            vmov r1, s4
             bl printf
 
             bal break
