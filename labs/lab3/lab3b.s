@@ -19,13 +19,13 @@ loop:
     bl printf
 
     @ saving user input
-    sub sp, sp, #8        @ Making space in the stack
+    sub sp, sp, #4        @ Making space in the stack
     ldr r0, =inputFormat  @ Loading the address of the format in R0
     mov r1, sp            @ Moving the address of the new space into R1
     bl scanf              @ Calling scanf
     ldr r1, [sp]          @ Get the value captured by scanf into r1
     mov r12, r1           @ save the option to r12
-    add sp, sp, #8        @ Restoring the SP to its original state
+    add sp, sp, #4        @ Restoring the SP to its original state
 
     @use switch statement to check the proper calculator function
     switch:
