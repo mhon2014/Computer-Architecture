@@ -19,13 +19,13 @@ loop:
     bl printf
 
     @ saving user input
-    sub sp, sp, #4        @ Making space in the stack
+    sub sp, sp, #8        @ Making space in the stack
     ldr r0, =inputFormat  @ Loading the address of the format in R0
     mov r1, sp            @ Moving the address of the new space into R1
     bl scanf              @ Calling scanf
     ldr r1, [sp]          @ Get the value captured by scanf into r1
     mov r12, r1           @ save the option to r12
-    add sp, sp, #4        @ Restoring the SP to its original state
+    add sp, sp, #8        @ Restoring the SP to its original state
 
     @use switch statement to check the proper calculator function
     switch:
@@ -35,7 +35,7 @@ loop:
         beq case2
         cmp r12, #3
         beq case3
-        cmp r12, #4
+        cmp r12, #8
         beq case4
         b default
 
@@ -53,20 +53,20 @@ loop:
             bl scanf                    @ Calling scanf
             vldr s2, [sp]                @ Get the value captured by scanf into r1
             @ vmov s2, s1                  @ saving first number
-            @ add sp, sp, #4              @ Restoring the SP to its original state
+            @ add sp, sp, #8              @ Restoring the SP to its original state
             vcvt.f64.f32 d2, s2
 
 
             ldr r0, =entryTwo
             bl printf
             @ saving user input
-            sub sp, sp, #4              @ Making space in the stack
+            sub sp, sp, #8             @ Making space in the stack
             ldr r0, =inputFormatFloat   @ Loading the address of the format in R0
             mov r1, sp                  @ Moving the address of the new space into R1
             bl scanf                    @ Calling scanf
             vldr s3, [sp]                @ Get the value captured by scanf into r1
             @ vmov s3, s1                  @ saving second number
-            @ add sp, sp, #4              @ Restoring the SP to its original state
+            @ add sp, sp, #8              @ Restoring the SP to its original state
             vcvt.f64.f32 d3, s3
 
 
@@ -91,20 +91,20 @@ loop:
             bl scanf                    @ Calling scanf
             vldr s2, [sp]                @ Get the value captured by scanf into r1
             @ vmov s2, s1                  @ saving first number
-            @ add sp, sp, #4              @ Restoring the SP to its original state
+            @ add sp, sp, #8              @ Restoring the SP to its original state
             vcvt.f64.f32 d2, s2
 
 
             ldr r0, =entryTwo
             bl printf
             @ saving user input
-            sub sp, sp, #4              @ Making space in the stack
+            sub sp, sp, #8              @ Making space in the stack
             ldr r0, =inputFormatFloat   @ Loading the address of the format in R0
             mov r1, sp                  @ Moving the address of the new space into R1
             bl scanf                    @ Calling scanf
             vldr s3, [sp]                @ Get the value captured by scanf into r1
             @ vmov s3, s1                  @ saving second number
-            @ add sp, sp, #4              @ Restoring the SP to its original state
+            @ add sp, sp, #8              @ Restoring the SP to its original state
             vcvt.f64.f32 d3, s3
 
 
@@ -129,20 +129,20 @@ loop:
             bl scanf                    @ Calling scanf
             vldr s2, [sp]                @ Get the value captured by scanf into r1
             @ vmov s2, s1                  @ saving first number
-            @ add sp, sp, #4              @ Restoring the SP to its original state
+            @ add sp, sp, #8              @ Restoring the SP to its original state
             vcvt.f64.f32 d2, s2
 
 
             ldr r0, =entryTwo
             bl printf
             @ saving user input
-            sub sp, sp, #4              @ Making space in the stack
+            sub sp, sp, #8              @ Making space in the stack
             ldr r0, =inputFormatFloat   @ Loading the address of the format in R0
             mov r1, sp                  @ Moving the address of the new space into R1
             bl scanf                    @ Calling scanf
             vldr s3, [sp]                @ Get the value captured by scanf into r1
             @ vmov s3, s1                  @ saving second number
-            @ add sp, sp, #4              @ Restoring the SP to its original state
+            @ add sp, sp, #8              @ Restoring the SP to its original state
             vcvt.f64.f32 d3, s3
 
 
@@ -167,20 +167,20 @@ loop:
             bl scanf                    @ Calling scanf
             vldr s2, [sp]                @ Get the value captured by scanf into r1
             @ vmov s2, s1                  @ saving first number
-            @ add sp, sp, #4              @ Restoring the SP to its original state
+            @ add sp, sp, #8              @ Restoring the SP to its original state
             vcvt.f64.f32 d2, s2
 
 
             ldr r0, =entryTwo
             bl printf
             @ saving user input
-            sub sp, sp, #4              @ Making space in the stack
+            sub sp, sp, #8              @ Making space in the stack
             ldr r0, =inputFormatFloat   @ Loading the address of the format in R0
             mov r1, sp                  @ Moving the address of the new space into R1
             bl scanf                    @ Calling scanf
             vldr s3, [sp]                @ Get the value captured by scanf into r1
             @ vmov s3, s1                  @ saving second number
-            @ add sp, sp, #4              @ Restoring the SP to its original state
+            @ add sp, sp, #8              @ Restoring the SP to its original state
             vcvt.f64.f32 d3, s3
 
 
@@ -199,7 +199,8 @@ loop:
             bal loop
 
 done:
-    pop {r4-r12, pc}        @ Restoring registers
+    add sp, sp, #24
+    pop {r0, pc}        @ Restoring registers
 
 _exit:
     mov pc, lr
