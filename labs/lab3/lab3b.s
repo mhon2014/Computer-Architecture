@@ -35,7 +35,7 @@ loop:
         beq case2
         cmp r8, #3
         beq case3
-        cmp r8, #8
+        cmp r8, #4
         beq case4
         b default
 
@@ -79,7 +79,7 @@ loop:
             bal break
 
         case2:      @sub
-            ldr r0, =addStr
+            ldr r0, =subStr
             bl printf
 
             ldr r0, =entryOne
@@ -117,7 +117,7 @@ loop:
             bal break
 
         case3:      @multiply
-            ldr r0, =addStr
+            ldr r0, =mulStr
             bl printf
 
             ldr r0, =entryOne
@@ -155,7 +155,7 @@ loop:
             bal break
         
         case4:      @add
-            ldr r0, =addStr
+            ldr r0, =divStr
             bl printf
 
             ldr r0, =entryOne
