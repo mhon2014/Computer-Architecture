@@ -20,3 +20,8 @@ debug:
 
 clean:
 	rm *.o lab2a lab2b lab2c
+
+all: lab2a.o lab2b.o lab2c.o
+	ld -o lab2a lab2a.o	
+	ld -o lab2b lab2b.o
+	ld -o lab2c lab2c.o
