@@ -23,8 +23,8 @@ loop:
     ldr r0, =inputFormat  @ Loading the address of the format in R0
     mov r1, sp            @ Moving the address of the new space into R1
     bl scanf              @ Calling scanf
-    ldr r1, [sp]          @ Get the value captured by scanf into r1
-    mov r8, r1           @ save the option to r8
+    ldr r8, [sp]          @ Get the value captured by scanf into r8
+    @ mov r8, r1           @ save the option to r8
     add sp, sp, #4        @ Restoring the SP to its original state
 
     @use switch statement to check the proper calculator function
