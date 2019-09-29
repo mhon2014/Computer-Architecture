@@ -200,7 +200,7 @@ loop:
 
 done:
     add sp, sp, #24
-    @ pop {r0, pc}        @ Restoring registers
+    pop {r0, pc}        @ Restoring registers
 
 _exit:
     mov pc, lr
