@@ -75,7 +75,7 @@ loop:
             vmov r2, r3, d0
             ldr r0, =result
             bl printf
-
+            add sp, sp, #16       @ restoring sp to its original position
             bal break
 
         case2:      @sub
@@ -113,7 +113,7 @@ loop:
             vmov r2, r3, d0
             ldr r0, =result
             bl printf
-
+            add sp, sp, #16       @ restoring sp to its original position
             bal break
 
         case3:      @multiply
@@ -151,7 +151,7 @@ loop:
             vmov r2, r3, d0
             ldr r0, =result
             bl printf
-
+            add sp, sp, #16       @ restoring sp to its original position
             bal break
         
         case4:      @add
@@ -189,6 +189,7 @@ loop:
             vmov r2, r3, d0
             ldr r0, =result
             bl printf
+            add sp, sp, #16       @ restoring sp to its original position
 
             bal break
 
@@ -196,7 +197,7 @@ loop:
             bal break
 
         break:
-            add sp, sp, #16       @ restoring sp to its original position
+            
             bal loop
 
 done:
