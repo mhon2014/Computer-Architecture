@@ -7,7 +7,7 @@
 
 .text
 main:
-    @ PUSH {R4-R12, LR}     @ Saving the Registers
+    PUSH {R0, LR}     @ Saving the Registers
     mov r8, #1
 
 
@@ -196,11 +196,11 @@ loop:
             bal break
 
         break:
+            add sp, sp, #16       @ restoring sp to its original position
             bal loop
 
 done:
-    add sp, sp, #16       @ restoring sp to its original position
-    @ POP {R4-R12, PC}      @ Restoring the Registers
+    POP {R0, PC}      @ Restoring the Registers
 
 _exit:
     mov pc, lr
